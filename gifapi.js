@@ -1,4 +1,4 @@
-var butions = [];
+var butions = ["goku", "cloud FF7", "one punch man", "batman"];
 
 
 function topic() {
@@ -16,12 +16,15 @@ $.ajax({
         var gifDiv = $("<div class='search'>");
         var p = $("<p>").text("Rating: " + results[i].rating);
         var gifImage = $("<img>");
-        gifImage.attr("data-state");
+        // gifImage.attr("data-state");
         gifImage.attr(
             {
                 "data-state": "still",
                 "data-animate": results[i].images.fixed_height.url,
-                "data-still": results[i].images.fixed_height_still.url
+                "data-still": results[i].images.fixed_height_still.url,
+                "class" : "gifty2",
+                "src": results[i].images.fixed_height_still.url
+
             }
         )
         console.log(results[i].images.fixed_height_still.url);
@@ -33,6 +36,20 @@ $.ajax({
     });
 }
 
+$(document).on("click", ".gifty2",  function () {
+
+    console.log($(this))
+    
+    var state = $(this).attr("data-state");
+    
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
+});
 
 function renderButtons() {
     $("#buttons").empty();
