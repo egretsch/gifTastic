@@ -1,6 +1,6 @@
 var butions = ["goku", "cloud FF7", "one punch man", "batman"];
 
-
+// Creates the buttons for the array as well as anything added to it
 function topic() {
 var search = $(this).attr("data-name");
 var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -17,6 +17,8 @@ $.ajax({
         var p = $("<p>").text("Rating: " + results[i].rating);
         var gifImage = $("<img>");
         // gifImage.attr("data-state");
+        // Gives data characteristics to each topic that is created
+        
         gifImage.attr(
             {
                 "data-state": "still",
@@ -35,7 +37,7 @@ $.ajax({
 
     });
 }
-
+// Allows application to shift between still and moving Ghiphy
 $(document).on("click", ".gifty2",  function () {
 
     console.log($(this))
@@ -50,7 +52,7 @@ $(document).on("click", ".gifty2",  function () {
         $(this).attr("data-state", "still");
     }
 });
-
+// Deletes current buttons and re-renders the whole array
 function renderButtons() {
     $("#buttons").empty();
     for (var i = 0; i < butions.length; i++) {
@@ -61,7 +63,7 @@ function renderButtons() {
         $("#buttons").append(a);
     }
 }
-
+// Allows information from the field to be moved to the array
 $("#add-button").on("click", function (event) {
     event.preventDefault();
     $("#button-input").empty();
@@ -70,7 +72,7 @@ $("#add-button").on("click", function (event) {
     renderButtons();
     
 });
-
+// Allows the class for each button or get the to be affected
 $(document).on("click", ".gifty", topic);
 
 
